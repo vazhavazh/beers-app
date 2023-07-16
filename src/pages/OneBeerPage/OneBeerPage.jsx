@@ -4,6 +4,7 @@ import {
   BeerName,
   BeerPageContainer,
   BeerTagline,
+  Ingredient,
   // Ingredient,
   RecipeContainer,
   RecipeInstructions,
@@ -40,13 +41,13 @@ export const OneBeerPage = () => {
 
             <h4>Ingredients:</h4>
             <ul>
-              {/* {beer.ingredients.malt.map((malt, index) => (
+             {beer.ingredients.malt && beer.ingredients.malt.map((malt, index) => (
                 <Ingredient key={index}>{malt.name}</Ingredient>
               ))}
-              {beer.ingredients.hops.map((hop, index) => (
+              {beer.ingredients.hops && beer.ingredients.hops.map((hop, index) => (
                 <Ingredient key={index}>{hop.name}</Ingredient>
               ))}
-              <Ingredient>Yeast: {beer.ingredients.yeast}</Ingredient> */}
+              <Ingredient>Yeast: {beer.ingredients.yeast}</Ingredient>
             </ul>
           </RecipeContainer>
 
