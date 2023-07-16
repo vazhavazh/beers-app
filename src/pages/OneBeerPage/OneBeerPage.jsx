@@ -23,29 +23,35 @@ export const OneBeerPage = () => {
 
   return (
     <BeerPageContainer>
-      <BeerImage src={beer.image_url} alt={beer.name} />
-      <BeerName>{beer.name}</BeerName>
-      <BeerTagline>{beer.tagline}</BeerTagline>
+      {isLoading ? (
+        <h1>Loading ...</h1>
+      ) : (
+        <>
+          <BeerImage src={beer.image_url} alt={beer.name} />
+          <BeerName>{beer.name}</BeerName>
+          <BeerTagline>{beer.tagline}</BeerTagline>
 
-      <RecipeContainer>
-        <RecipeTitle>Recipe</RecipeTitle>
-        <RecipeInstructions>{beer.description}</RecipeInstructions>
+          <RecipeContainer>
+            <RecipeTitle>Recipe</RecipeTitle>
+            <RecipeInstructions>{beer.description}</RecipeInstructions>
 
-        <p>Brewers Tips: {beer.brewers_tips}</p>
+            <p>Brewers Tips: {beer.brewers_tips}</p>
 
-        <h4>Ingredients:</h4>
-        <ul>
-          {beer.ingredients.malt.map((malt, index) => (
-            <Ingredient key={index}>{malt.name}</Ingredient>
-          ))}
-          {beer.ingredients.hops.map((hop, index) => (
-            <Ingredient key={index}>{hop.name}</Ingredient>
-          ))}
-          <Ingredient>Yeast: {beer.ingredients.yeast}</Ingredient>
-        </ul>
-      </RecipeContainer>
+            <h4>Ingredients:</h4>
+            <ul>
+              {beer.ingredients.malt.map((malt, index) => (
+                <Ingredient key={index}>{malt.name}</Ingredient>
+              ))}
+              {beer.ingredients.hops.map((hop, index) => (
+                <Ingredient key={index}>{hop.name}</Ingredient>
+              ))}
+              <Ingredient>Yeast: {beer.ingredients.yeast}</Ingredient>
+            </ul>
+          </RecipeContainer>
 
-      <p>Additional content here...</p>
+          <p>Additional content here...</p>
+        </>
+      )}
     </BeerPageContainer>
   );
 };
