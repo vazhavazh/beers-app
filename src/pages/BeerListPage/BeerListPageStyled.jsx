@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const BeerGallery = styled.ul`
   gap: 12px;
@@ -10,7 +11,8 @@ export const BeerGallery = styled.ul`
   padding: 8px;
 `;
 
-export const BeerCard = styled.div`
+export const BeerCard = styled(NavLink)`
+  text-decoration: none;
   padding: 8px;
   border-radius: 8px;
   width: 200px;
@@ -19,6 +21,7 @@ export const BeerCard = styled.div`
   padding: 16px;
   position: relative;
   overflow: hidden;
+  transition: opacity 0.4s ease-in-out;
   &::-webkit-scrollbar {
     width: 8px;
   }
@@ -33,18 +36,17 @@ export const BeerCard = styled.div`
     overflow: auto;
   }
   div {
-    
     font-family: 'Montserrat', sans-serif;
     border-radius: 8px;
     font-size: 16px;
     position: absolute;
-    
+
     left: 0;
     width: 100%;
     background-color: #474a51;
     color: #ffff;
     padding: 16px;
-    transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition: bottom 0.3s ease-in-out, opacity 0.5s ease-in-out;
     opacity: 0;
   }
   &:hover > div {
@@ -67,9 +69,6 @@ export const ImageWrapper = styled.section`
     max-height: 160px;
     margin-right: 12px;
   }
-
-  
-  
 `;
 export const Flex = styled.section`
   display: flex;
