@@ -79,6 +79,7 @@ export const BeerListPage = () => {
                   <Flex>
                     <span>{beer.name}</span>
                     <span>{beer.tagline}</span>
+                    <span>ABV: {beer.abv}</span>
                   </Flex>
                 </ImageWrapper>
               </BeerCard>
