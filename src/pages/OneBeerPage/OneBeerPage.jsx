@@ -19,7 +19,8 @@ export const OneBeerPage = () => {
   const { id } = useParams();
   useEffect(() => {
     getOneBeer(id);
-  }, [getOneBeer, id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <BeerPageContainer>
