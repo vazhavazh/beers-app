@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const BeerPageContainer = styled.div`
-padding-top: 8px;
+padding-top: 88px;
   display: flex;
   flex-direction: column;
   align-items: center;

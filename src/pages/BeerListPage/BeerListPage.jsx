@@ -6,6 +6,8 @@ import {
   BeerCard,
   ImageWrapper,
   Flex,
+  BeerCardHolder,
+  DeleteButton,
 } from './BeerListPageStyled';
 
 export const BeerListPage = () => {
@@ -18,8 +20,6 @@ export const BeerListPage = () => {
   useEffect(() => {
     getBeers();
   }, [getBeers]);
-
-
 
   const handleSelect = (event, recipe) => {
     event.preventDefault();
@@ -50,7 +50,7 @@ export const BeerListPage = () => {
   const emptyList = beers.length === 0;
 
   return (
-    <>
+    <div>
       {isLoading ? (
         <h1
           style={{
@@ -63,8 +63,7 @@ export const BeerListPage = () => {
         <>
           <BeerGallery>
             {beers.slice(0, 15).map(beer => (
-              <BeerCard
-                to={`/beers/${beer.id}`}
+              <BeerCardHolder
                 key={beer.id}
                 onContextMenu={event => handleSelect(event, beer)}
                 style={{
@@ -73,21 +72,23 @@ export const BeerListPage = () => {
                     : 'white',
                 }}
               >
-                <div>{beer.description}</div>
-                <ImageWrapper>
-                  {' '}
-                  <img src={beer.image_url} alt="beer" />
-                  <Flex>
-                    <span>{beer.name}</span>
-                    <span>{beer.tagline}</span>
-                    <span>ABV: {beer.abv}</span>
-                  </Flex>
-                </ImageWrapper>
-              </BeerCard>
+                <BeerCard to={`/beers/${beer.id}`}>
+                  <div>{beer.description}</div>
+                  <ImageWrapper>
+                    {' '}
+                    <img src={beer.image_url} alt="beer" />
+                    <Flex>
+                      <span>{beer.name}</span>
+                      <span>{beer.tagline}</span>
+                      <span>ABV: {beer.abv}</span>
+                    </Flex>
+                  </ImageWrapper>
+                </BeerCard>
+              </BeerCardHolder>
             ))}
           </BeerGallery>
           {selectedRecipes.length > 0 && (
-            <button onClick={handleDeleteButtonClick}>Delete</button>
+            <DeleteButton onClick={handleDeleteButtonClick}>Delete</DeleteButton>
           )}
           {emptyList ? (
             <button onClick={handleLoadMoreClick}>Load More</button>
@@ -96,8 +97,6 @@ export const BeerListPage = () => {
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
-
-

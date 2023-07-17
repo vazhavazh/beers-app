@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
-export const BeerGallery = styled.div`
+export const BeerGallery = styled.ul`
   display: flex;
   gap: 12px 4%;
 
@@ -10,18 +10,17 @@ export const BeerGallery = styled.div`
   padding: 77px;
 `;
 
-export const BeerCard = styled(NavLink)`
+export const BeerCardHolder = styled.li`
   flex-basis: 47%;
-  text-decoration: none;
-  padding: 8px;
-  border-radius: 8px;
-  width: 200px;
   height: 200px;
-  background-color: lightgray;
   padding: 16px;
-  position: relative;
   overflow: hidden;
-  transition: opacity 0.4s ease-in-out;
+  @media (min-width: 768px) {
+    :nth-of-type(5n + 5) {
+      flex-basis: 60%;
+    }
+  }
+  border-radius: 8px;
   &::-webkit-scrollbar {
     width: 8px;
   }
@@ -35,6 +34,16 @@ export const BeerCard = styled(NavLink)`
   &:hover {
     overflow: auto;
   }
+`;
+export const BeerCard = styled(NavLink)`
+  text-decoration: none;
+
+  background-color: lightgray;
+
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.4s ease-in-out;
+
   div {
     font-family: 'Montserrat', sans-serif;
     border-radius: 8px;
@@ -57,11 +66,6 @@ export const BeerCard = styled(NavLink)`
   &:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
       1px 4px 6px rgba(0, 0, 0, 0.16);
-  }
-  @media (min-width: 768px) {
-    :nth-of-type(5n + 5) {
-      flex-basis: 60%;
-    }
   }
 `;
 export const ImageWrapper = styled.section`
@@ -86,5 +90,26 @@ export const Flex = styled.section`
     color: #474a51;
     font-size: 16px;
     margin-bottom: 12px;
+  }
+`;
+export const DeleteButton = styled.button`
+  position: fixed;
+  z-index: 10000000;
+  bottom: 3%;
+  right: 4%;
+  border: 1px solid red;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 8px;
+  background-color: red;
+  color: #ffffff;
+  cursor: pointer;
+
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: #000;
   }
 `;
