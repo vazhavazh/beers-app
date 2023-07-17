@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/beers-app/static/css/main.bcca9f40.css",
-    "main.js": "/beers-app/static/js/main.00a1903a.js",
+    "main.css": "/beers-app/static/css/main.c1e3022d.css",
+    "main.js": "/beers-app/static/js/main.c4c7719d.js",
     "index.html": "/beers-app/index.html",
-    "main.bcca9f40.css.map": "/beers-app/static/css/main.bcca9f40.css.map",
-    "main.00a1903a.js.map": "/beers-app/static/js/main.00a1903a.js.map"
+    "main.c1e3022d.css.map": "/beers-app/static/css/main.c1e3022d.css.map",
+    "main.c4c7719d.js.map": "/beers-app/static/js/main.c4c7719d.js.map"
   },
   "entrypoints": [
-    "static/css/main.bcca9f40.css",
-    "static/js/main.00a1903a.js"
+    "static/css/main.c1e3022d.css",
+    "static/js/main.c4c7719d.js"
   ]
 }
