@@ -1,44 +1,45 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { useEffect, useState } from 'react';
 import useBeersStore from 'stores/useBeersStore';
 import {
   BeerGallery,
-  BeerCard,
-  ImageWrapper,
-  Flex,
   BeerCardHolder,
   DeleteButton,
+  LoadMoreBtn,
+  FlexContainer,
 } from './BeerListPageStyled';
+
+const BeerCard = lazy(() => import('../../components/BeerCard/BeerCard'));
 
 export const BeerListPage = () => {
   const beers = useBeersStore(state => state.data);
   const getBeers = useBeersStore(state => state.getBeers);
   const isLoading = useBeersStore(state => state.isLoading);
-  const [selectedRecipes, setSelectedRecipes] = useState([]);
+  const [selectedCards, setSelectedCards] = useState([]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     getBeers();
   }, [getBeers]);
 
-  const handleSelect = (event, recipe) => {
+  const handleSelect = (event, beer) => {
     event.preventDefault();
-    setSelectedRecipes(prevSelectedRecipes => {
-      const isSelected = prevSelectedRecipes.includes(recipe.id);
+    setSelectedCards(prevSelectedCards => {
+      const isSelected = prevSelectedCards.includes(beer.id);
       if (isSelected) {
-        return prevSelectedRecipes.filter(id => id !== recipe.id);
+        return prevSelectedCards.filter(id => id !== beer.id);
       } else {
-        return [...prevSelectedRecipes, recipe.id];
+        return [...prevSelectedCards, beer.id];
       }
     });
   };
 
   const handleDeleteButtonClick = () => {
     const updatedRecipes = beers.filter(
-      recipe => !selectedRecipes.includes(recipe.id)
+      recipe => !selectedCards.includes(recipe.id)
     );
     useBeersStore.setState({ data: updatedRecipes });
-    setSelectedRecipes([]);
+    setSelectedCards([]);
   };
 
   const handleLoadMoreClick = async () => {
@@ -67,31 +68,25 @@ export const BeerListPage = () => {
                 key={beer.id}
                 onContextMenu={event => handleSelect(event, beer)}
                 style={{
-                  background: selectedRecipes.includes(beer.id)
+                  background: selectedCards.includes(beer.id)
                     ? 'lightblue'
                     : 'white',
                 }}
               >
-                <BeerCard to={`/beers/${beer.id}`}>
-                  <div>{beer.description}</div>
-                  <ImageWrapper>
-                    {' '}
-                    <img src={beer.image_url} alt="beer" />
-                    <Flex>
-                      <span>{beer.name}</span>
-                      <span>{beer.tagline}</span>
-                      <span>ABV: {beer.abv}</span>
-                    </Flex>
-                  </ImageWrapper>
-                </BeerCard>
+                <BeerCard beer={beer} />
               </BeerCardHolder>
             ))}
           </BeerGallery>
-          {selectedRecipes.length > 0 && (
-            <DeleteButton onClick={handleDeleteButtonClick}>Delete</DeleteButton>
+          {selectedCards.length > 0 && (
+            <DeleteButton onClick={handleDeleteButtonClick}>
+              Delete
+            </DeleteButton>
           )}
           {emptyList ? (
-            <button onClick={handleLoadMoreClick}>Load More</button>
+            <FlexContainer>
+              {' '}
+              <LoadMoreBtn onClick={handleLoadMoreClick}>Load More</LoadMoreBtn>
+            </FlexContainer>
           ) : (
             <></>
           )}
