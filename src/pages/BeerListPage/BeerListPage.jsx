@@ -14,11 +14,12 @@ export const BeerListPage = () => {
   const isLoading = useBeersStore(state => state.isLoading);
   const [selectedRecipes, setSelectedRecipes] = useState([]);
   const [page, setPage] = useState(1);
- 
 
   useEffect(() => {
     getBeers();
   }, [getBeers]);
+
+
 
   const handleSelect = (event, recipe) => {
     event.preventDefault();
@@ -59,7 +60,7 @@ export const BeerListPage = () => {
           Loading...
         </h1>
       ) : (
-        <div>
+        <>
           <BeerGallery>
             {beers.slice(0, 15).map(beer => (
               <BeerCard
@@ -93,8 +94,10 @@ export const BeerListPage = () => {
           ) : (
             <></>
           )}
-        </div>
+        </>
       )}
     </>
   );
 };
+
+

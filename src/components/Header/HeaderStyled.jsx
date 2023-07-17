@@ -10,6 +10,10 @@ export const HeaderStyled = styled.nav`
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   gap: 44px;
+
+  position: fixed;
+  z-index: 10000;
+  width: 100%;
 `;
 
 export const StyledNavLink = styled(NavLink)`
